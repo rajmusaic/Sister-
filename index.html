@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorry didi ❤️</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #e3f2fd, #ffebee);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #333;
+    }
+    
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .header {
+      background: linear-gradient(45deg, #42a5f5, #2196f3);
+      padding: 30px;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+    
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    
+    .content {
+      padding: 40px;
+      text-align: center;
+    }
+    
+    .message-box {
+      background: #f3f9ff;
+      border-radius: 15px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      border-left: 5px solid #42a5f5;
+    }
+    
+    .message-box p {
+      font-size: 1.3rem;
+      line-height: 1.6;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    
+    .apology-text {
+      font-size: 1.8rem;
+      color: #2196f3;
+      font-weight: bold;
+      margin: 20px 0;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    .voice-section {
+      margin: 30px 0;
+      padding: 20px;
+      background: #f0f8ff;
+      border-radius: 15px;
+    }
+    
+    .voice-btn {
+      background: linear-gradient(45deg, #42a5f5, #2196f3);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      margin: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(66, 165, 245, 0.4);
+    }
+    
+    .voice-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(66, 165, 245, 0.6);
+    }
+    
+    .voice-btn:active {
+      transform: translateY(1px);
+    }
+    
+    .decorations {
+      display: flex;
+      justify-content: space-around;
+      margin: 30px 0;
+    }
+    
+    .decoration {
+      font-size: 2.5rem;
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .decoration:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+    
+    .decoration:nth-child(3) {
+      animation-delay: 1s;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .footer {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 0 0 20px 20px;
+      text-align: center;
+      color: #777;
+    }
+    
+    .heart {
+      color: #e91e63;
+      animation: heartbeat 1.5s ease infinite;
+      display: inline-block;
+    }
+    
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      5% { transform: scale(1.1); }
+      10% { transform: scale(1); }
+      15% { transform: scale(1.2); }
+      50% { transform: scale(1); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Modal Styles */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transform: translateY(-50px);
+      transition: transform 0.3s ease;
+    }
+    
+    .modal.active .modal-content {
+      transform: translateY(0);
+    }
+    
+    .modal h2 {
+      color: #2196f3;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+    
+    .modal p {
+      margin-bottom: 25px;
+      font-size: 1.2rem;
+      color: #555;
+    }
+    
+    .modal-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    .modal-btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .modal-btn.yes {
+      background: #4CAF50;
+      color: white;
+    }
+    
+    .modal-btn.no {
+      background: #f44336;
+      color: white;
+    }
+    
+    .modal-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Scroll button */
+    .scroll-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #2196f3;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .scroll-btn:hover {
+      transform: translateY(-5px);
+      background: #42a5f5;
+    }
+    
+    /* Responsive design */
+    @media (max-width: 600px) {
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .message-box p {
+        font-size: 1.1rem;
+      }
+      
+      .apology-text {
+        font-size: 1.5rem;
+      }
+      
+      .content {
+        padding: 20px;
+      }
+      
+      .modal-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .scroll-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Pyaare didi ❤️</h1>
+      <p>You're the best brother in the world</p>
+    </div>
+    
+    <div class="content">
+      <div class="decorations">
+        <div class="decoration">🌟</div>
+        <div class="decoration">💙</div>
+        <div class="decoration">🌠</div>
+      </div>
+      
+      <div class="message-box">
+        <p>didi, aap jaante hain ki aap mere liye kitne important ho. Aapne hamesha mere saath khade rahe ho, chahe situation kuch bhi ho.</p>
+        
+        <p>Lekin aaj maine aapko dukh diya hai, aur iske liye main bahut afsos me hoon.</p>
+        
+        <div class="apology-text">"Mujhe maaf kar do didi, mujhse glti ho gayi"</div>
+        
+        <p>Yeh dil se aaya hua mera apology hai. Main vaada karti hoon ki aisi galti dobara nahi hogi.</p>
+      </div>
+      
+      <div class="voice-section">
+        <p>Yeh suniye, yeh meri aawaz mein...</p>
+        <button class="voice-btn" id="playVoice">Emotional Voice Message Play Karein</button>
+        <p><small>(Please allow audio when prompted)</small></p>
+      </div>
+      
+      <div class="decorations">
+        <div class="decoration">✨</div>
+        <div class="decoration">💫</div>
+        <div class="decoration">⭐</div>
+      </div>
+      
+      <button class="voice-btn" id="callBrother">bhiya Ko Call Karein</button>
+    </div>
+    
+    <div class="footer">
+      <p>Aapki badi behen</p>
+      <p>With lots of love <span class="heart">❤️</span></p>
+    </div>
+  </div>
+
+  <!-- Scroll to top button -->
+  <button class="scroll-btn" id="scrollTop">↑</button>
+
+  <!-- Call Modal -->
+  <div class="modal" id="callModal">
+    <div class="modal-content">
+      <h2>Kya aap Bhiya ko call karenge?</h2>
+      <p>Yeh message sunne ke baad, kya aap bhiya ko call karke maafi maangenge?</p>
+      <div class="modal-buttons">
+        <button class="modal-btn yes" id="yesCall">Haan, Zaroor</button>
+        <button class="modal-btn no" id="noCall">Nahi, Baad Mein</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Elements
+    const playVoiceBtn = document.getElementById('playVoice');
+    const callBrotherBtn = document.getElementById('callBrother');
+    const callModal = document.getElementById('callModal');
+    const yesCallBtn = document.getElementById('yesCall');
+    const noCallBtn = document.getElementById('noCall');
+    const scrollTopBtn = document.getElementById('scrollTop');
+    
+    // Scroll to top functionality
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Show/hide scroll button based on scroll position
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollTopBtn.style.display = 'flex';
+      } else {
+        scrollTopBtn.style.display = 'none';
+      }
+    });
+    
+    // Initially hide the scroll button
+    scrollTopBtn.style.display = 'none';
+    
+    // Play emotional voice message
+    playVoiceBtn.addEventListener('click', function() {
+      // Create speech synthesis
+      const speech = new SpeechSynthesisUtterance();
+      
+      // Set text to be spoken
+      speech.text = "Hello didi, main aapse ek baat kehna chahti hoon. Mujhe aaj jo bhi hua, uske liye main bahut afsos me hoon. Aapne hamesha mera saath diya hai, aur aaj maine aapko dukh diya hai. Yeh meri galti thi, aur main aapse maafi maangti hoon. Kya aap mujhe maaf kar denge? Main vaada karti hoon ki aisi galti dobara nahi hogi. Aap mere sabse ache didi ho, aur main aapko bahut pyaar karti hoon. Please mujhe maaf kar dijiye.";
+      
+      // Set voice properties for emotional tone
+      speech.lang = 'hi-IN';
+      speech.rate = 0.9; // Slightly slower for emotional effect
+      speech.pitch = 1.1; // Slightly higher pitch
+      speech.volume = 1;
+      
+      // Find a female Hindi voice if available
+      const voices = speechSynthesis.getVoices();
+      const hindiVoice = voices.find(voice => voice.lang === 'hi-IN' || voice.lang.startsWith('hi'));
+      
+      if (hindiVoice) {
+        speech.voice = hindiVoice;
+      }
+      
+      // Speak the text
+      speechSynthesis.speak(speech);
+      
+      // Change button text while speaking
+      this.textContent = "Playing...";
+      this.disabled = true;
+      
+      // Reset button when speech ends
+      speech.onend = function() {
+        playVoiceBtn.textContent = "Emotional Voice Message Play Karein";
+        playVoiceBtn.disabled = false;
+        
+        // Show call modal after voice message ends
+        setTimeout(() => {
+          callModal.classList.add('active');
+          speakModalMessage();
+        }, 1000);
+      };
+    });
+    
+    // Call brother button
+    callBrotherBtn.addEventListener('click', function() {
+      callModal.classList.add('active');
+      speakModalMessage();
+    });
+    
+    // Yes call button
+    yesCallBtn.addEventListener('click', function() {
+      speakResponse("Bahut accha! Main jaanti thi aap zaroor call karenge.");
+      
+      // Close modal after a delay
+      setTimeout(() => {
+        callModal.classList.remove('active');
+      }, 5000);
+    });
+    
+    // No call button
+    noCallBtn.addEventListener('click', function() {
+      speakResponse("Nahi didi! Aap escape nahi kar sakte. Aapko bhaiya ko call karna hii hoga. Please unhe call karein !");
+      
+      // Don't close the modal immediately
+      setTimeout(() => {
+        // Show message again after some time
+        speakModalMessage();
+      }, 4000);
+    });
+    
+    // Function to speak modal message
+    function speakModalMessage() {
+      const modalSpeech = new SpeechSynthesisUtterance();
+      modalSpeech.text = "Kya aap bhaiya ko call karke maaff karogee? Please haan ka button dabaiye.";
+      modalSpeech.lang = 'hi-IN';
+      modalSpeech.rate = 0.9;
+      
+      const voices = speechSynthesis.getVoices();
+      const hindiVoice = voices.find(voice => voice.lang === 'hi-IN' || voice.lang.startsWith('hi'));
+      
+      if (hindiVoice) {
+        modalSpeech.voice = hindiVoice;
+      }
+      
+      speechSynthesis.speak(modalSpeech);
+    }
+    
+    // Function to speak response
+    function speakResponse(text) {
+      const responseSpeech = new SpeechSynthesisUtterance();
+      responseSpeech.text = text;
+      responseSpeech.lang = 'hi-IN';
+      responseSpeech.rate = 0.9;
+      
+      const voices = speechSynthesis.getVoices();
+      const hindiVoice = voices.find(voice => voice.lang === 'hi-IN' || voice.lang.startsWith('hi'));
+      
+      if (hindiVoice) {
+        responseSpeech.voice = hindiVoice;
+      }
+      
+      speechSynthesis.speak(responseSpeech);
+    }
+    
+    // Load voices when they become available
+    window.speechSynthesis.onvoiceschanged = function() {
+      // This ensures voices are loaded
+    };
+  </script>
+</body>
+</html>
